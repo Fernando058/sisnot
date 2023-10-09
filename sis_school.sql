@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generaciÛn: 12-01-2020 a las 17:46:14
--- VersiÛn del servidor: 10.4.6-MariaDB
--- VersiÛn de PHP: 7.3.8
+-- Tiempo de generaci√≥n: 09-10-2023 a las 17:47:01
+-- Versi√≥n del servidor: 10.4.28-MariaDB
+-- Versi√≥n de PHP: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -30,20 +29,20 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `alumn` (
   `id` int(11) NOT NULL,
-  `image` varchar(50) COLLATE utf8_bin NOT NULL,
-  `name` varchar(50) COLLATE utf8_bin NOT NULL,
-  `lastname` varchar(50) COLLATE utf8_bin NOT NULL,
-  `email` varchar(255) COLLATE utf8_bin NOT NULL,
-  `address` varchar(60) COLLATE utf8_bin NOT NULL,
-  `phone` varchar(60) COLLATE utf8_bin NOT NULL,
-  `c1_fullname` varchar(100) COLLATE utf8_bin DEFAULT NULL,
-  `c1_address` varchar(100) COLLATE utf8_bin DEFAULT NULL,
-  `c1_phone` varchar(100) COLLATE utf8_bin DEFAULT NULL,
-  `c1_note` varchar(100) COLLATE utf8_bin DEFAULT NULL,
-  `c2_fullname` varchar(100) COLLATE utf8_bin DEFAULT NULL,
-  `c2_address` varchar(100) COLLATE utf8_bin DEFAULT NULL,
-  `c2_phone` varchar(100) COLLATE utf8_bin DEFAULT NULL,
-  `c2_note` varchar(100) COLLATE utf8_bin DEFAULT NULL,
+  `image` varchar(50) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `lastname` varchar(50) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `address` varchar(60) NOT NULL,
+  `phone` varchar(60) NOT NULL,
+  `c1_fullname` varchar(100) DEFAULT NULL,
+  `c1_address` varchar(100) DEFAULT NULL,
+  `c1_phone` varchar(100) DEFAULT NULL,
+  `c1_note` varchar(100) DEFAULT NULL,
+  `c2_fullname` varchar(100) DEFAULT NULL,
+  `c2_address` varchar(100) DEFAULT NULL,
+  `c2_phone` varchar(100) DEFAULT NULL,
+  `c2_note` varchar(100) DEFAULT NULL,
   `is_active` tinyint(1) NOT NULL DEFAULT 1,
   `created_at` datetime DEFAULT NULL,
   `user_id` int(11) NOT NULL
@@ -97,7 +96,7 @@ CREATE TABLE `behavior` (
 
 CREATE TABLE `block` (
   `id` int(11) NOT NULL,
-  `name` varchar(100) COLLATE utf8_bin DEFAULT NULL,
+  `name` varchar(100) DEFAULT NULL,
   `team_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -123,7 +122,7 @@ CREATE TABLE `calification` (
 CREATE TABLE `permiso` (
   `idpermiso` int(11) NOT NULL,
   `nombre` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Volcado de datos para la tabla `permiso`
@@ -142,22 +141,10 @@ INSERT INTO `permiso` (`idpermiso`, `nombre`) VALUES
 
 CREATE TABLE `team` (
   `idgrupo` int(11) NOT NULL,
-  `nombre` varchar(50) COLLATE utf8_bin NOT NULL,
+  `nombre` varchar(50) NOT NULL,
   `favorito` tinyint(1) NOT NULL,
   `idusuario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
---
--- Volcado de datos para la tabla `team`
---
-
-INSERT INTO `team` (`idgrupo`, `nombre`, `favorito`, `idusuario`) VALUES
-(1, 'PRIMERO DE PRIMARIA', 1, 1),
-(2, 'SEGUNDO DE PRIMARIA', 1, 1),
-(3, 'TERCERO DE PRIMARIA', 1, 1),
-(4, 'CUARTO DE PRIMARIA', 1, 1),
-(5, 'QUINTO DE PRIMARIA', 1, 1),
-(6, 'SEXTO DE PRIMARIA', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -178,14 +165,14 @@ CREATE TABLE `usuario` (
   `clave` varchar(64) NOT NULL,
   `imagen` varchar(50) NOT NULL,
   `condicion` tinyint(4) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
 INSERT INTO `usuario` (`idusuario`, `nombre`, `tipo_documento`, `num_documento`, `direccion`, `telefono`, `email`, `cargo`, `login`, `clave`, `imagen`, `condicion`) VALUES
-(1, 'demo', 'DNI', '72154871', 'Calle los alpes 210', '547821', 'admin@gmail.com', 'Administrador', 'admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', '1535417472.jpg', 1);
+(1, 'Administrador', 'CEDULA', '1311095739', 'Sucre - 24 de Mayo - Manabi', '0996796229', 'fcardenas058@gmail.com', 'Administrador', 'admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', '1696862919.png', 1);
 
 -- --------------------------------------------------------
 
@@ -197,16 +184,16 @@ CREATE TABLE `usuario_permiso` (
   `idusuario_permiso` int(11) NOT NULL,
   `idusuario` int(11) NOT NULL,
   `idpermiso` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Volcado de datos para la tabla `usuario_permiso`
 --
 
 INSERT INTO `usuario_permiso` (`idusuario_permiso`, `idusuario`, `idpermiso`) VALUES
-(1, 1, 1),
-(2, 1, 2),
-(3, 1, 3);
+(20, 1, 1),
+(21, 1, 2),
+(22, 1, 3);
 
 --
 -- √çndices para tablas volcadas
@@ -348,7 +335,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `usuario_permiso`
 --
 ALTER TABLE `usuario_permiso`
-  MODIFY `idusuario_permiso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `idusuario_permiso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- Restricciones para tablas volcadas
